@@ -101,7 +101,7 @@
   <h3>3.4 Orders &amp; payments</h3>
   <ul>
     <li>Shipping / contact details you enter at checkout.</li>
-    <li>Transaction identifiers and amounts on our systems. <strong>Full card or wallet numbers are processed by Airwallex</strong>, not stored by Modam.</li>
+    <li>Transaction identifiers and amounts on our systems. <strong>Full card or wallet numbers are processed by Stripe</strong>, not stored by Modam.</li>
   </ul>
   <h3>3.5 Technical &amp; usage data</h3>
   <ul>
@@ -116,8 +116,8 @@
   <h3>4.1 Supabase (hosting &amp; auth infrastructure)</h3>
   <p><strong>Role:</strong> <strong>Processor / entrusted service provider</strong> operating database and authentication infrastructure on our instructions.<br/>
   Data may be stored or processed in regions Supabase configures for our project. See Supabase’s documentation and DPA for details.</p>
-  <h3>4.2 Airwallex (payments)</h3>
-  <p><strong>Role:</strong> <strong>Independent payment services provider</strong> (separate controller for payment and fraud data it processes). Their privacy policy applies to checkout data: <a href="https://www.airwallex.com/terms/privacy-policy" target="_blank" rel="noopener noreferrer">Airwallex Privacy Policy</a>.</p>
+  <h3>4.2 Stripe (payments)</h3>
+  <p><strong>Role:</strong> <strong>Independent payment services provider</strong> (separate controller for payment and fraud data it processes). Their privacy policy applies to checkout data: <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe Privacy Policy</a>.</p>
   <h3>4.3 Google, Apple, Facebook (OAuth)</h3>
   <p><strong>Role:</strong> <strong>Independent identity providers.</strong> They process sign-in on their terms when you choose “Sign in with …”. Review their privacy notices for those flows.</p>
   <h3>4.4 Logistics &amp; communications</h3>
@@ -127,7 +127,7 @@
   <h2>5. Sharing overview (provision vs processing)</h2>
   <ul>
     <li><strong>Processors / entrustment:</strong> Supabase and similar vendors process data only on our documented instructions.</li>
-    <li><strong>Independent controllers:</strong> Airwallex, Google, Apple, and Meta (Facebook) control certain data in their own environments.</li>
+    <li><strong>Independent controllers:</strong> Stripe, Google, Apple, and Meta (Facebook) control certain data in their own environments.</li>
     <li><strong>Legal &amp; safety:</strong> We may disclose information if required by law or to protect users and the Service.</li>
   </ul>
 

@@ -20,8 +20,10 @@
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
 
     /* NAV */
-    nav { padding: 24px 40px; display: flex; justify-content: center; }
+    nav { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: 0 auto; width: 100%; }
     .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 8px; color: var(--gold); text-transform: uppercase; text-decoration: none; }
+    .nav-story { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-story:hover { color: var(--gold); }
 
     /* HERO */
     .hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px; text-align: center; }
@@ -56,6 +58,7 @@
 <body>
   <nav>
     <a class="logo-text" href="index.html">Modam</a>
+    <a class="nav-story" href="about-modam.html">Our Story</a>
   </nav>
 
   <section class="hero">
@@ -96,13 +99,14 @@
 
   <footer>
     <div class="footer-links">
+      <a href="about-modam.html">About Modam</a>
       <a href="privacy-policy.html">Privacy Policy</a>
       <a href="terms-of-service.html">Terms of Service</a>
       <a href="data-deletion.html">Data Deletion</a>
-      <a href="docs/shipping-policy.html">Shipping Policy</a>
-      <a href="docs/refund-policy.html">Refund Policy</a>
-      <a href="docs/artist-guidelines.html">Artist Guidelines</a>
-      <a href="mailto:modamceo2026@gmail.com">Contact</a>
+      <a href="shipping-policy.html">Shipping Policy</a>
+      <a href="refund-policy.html">Refund Policy</a>
+      <a href="artist-guidelines.html">Artist Guidelines</a>
+      <a href="mailto:modamceo@modam.app">Contact</a>
     </div>
     <p class="footer-copy">© 2026 Modam. All rights reserved.</p>
   </footer>
