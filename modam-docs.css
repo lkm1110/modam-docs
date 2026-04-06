@@ -1,0 +1,915 @@
+/**
+ * Modam docs — shared editorial / luxury theme (Italiana + Newsreader).
+ * Linked from index, legal pages, about-modam.
+ */
+:root {
+  --ink: #0a0908;
+  --ink-soft: #141210;
+  --ink-elevated: #1a1714;
+  --parchment: #f2ede3;
+  --parchment-dim: #c9c2b4;
+  --champagne: #b69a5c;
+  --champagne-muted: rgba(182, 154, 92, 0.55);
+  --champagne-deep: #7d6840;
+  --mist: rgba(242, 237, 227, 0.52);
+  --mist2: rgba(242, 237, 227, 0.32);
+  --rule: rgba(182, 154, 92, 0.14);
+  --rule-strong: rgba(182, 154, 92, 0.22);
+  --panel: rgba(255, 252, 245, 0.035);
+  --panel-edge: rgba(255, 252, 245, 0.06);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: "Newsreader", Georgia, serif;
+  font-size: clamp(16px, 1.9vw, 18px);
+  font-weight: 300;
+  line-height: 1.78;
+  letter-spacing: 0.02em;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  z-index: 1000;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 50% at 50% -5%, rgba(182, 154, 92, 0.045), transparent 52%),
+    radial-gradient(ellipse 100% 65% at 50% 105%, rgba(0, 0, 0, 0.42), transparent 48%);
+  z-index: 999;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ——— Nav ——— */
+.doc-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px clamp(22px, 5vw, 56px);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  background: rgba(10, 9, 8, 0.82);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  z-index: 50;
+}
+
+.nav-mark,
+.logo-text {
+  font-family: "Italiana", serif;
+  font-size: clamp(18px, 2.4vw, 24px);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+}
+
+.nav-story,
+.nav-back {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--mist);
+  text-decoration: none;
+  transition: color 0.35s ease;
+}
+
+.nav-story:hover,
+.nav-back:hover {
+  color: var(--champagne);
+}
+
+/* ——— Legal / doc hero (editorial, aligned with About) ——— */
+.hero--doc {
+  padding: clamp(72px, 14vh, 120px) clamp(24px, 6vw, 48px) clamp(56px, 9vh, 88px);
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+.hero--doc h1 {
+  font-family: "Italiana", serif;
+  font-size: clamp(2.35rem, 6.5vw, 3.35rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--parchment);
+  margin-bottom: 1.35rem;
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.hero--doc h1::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  margin: 1.35rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--champagne-muted), transparent);
+}
+
+.hero--doc .updated {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--mist);
+}
+
+/* ——— Prose ——— */
+.content {
+  flex: 1;
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: clamp(56px, 10vw, 88px) clamp(22px, 5vw, 32px) clamp(88px, 14vh, 120px);
+}
+
+.content > p:first-of-type {
+  font-size: 1.125rem;
+  line-height: 1.82;
+  color: var(--parchment);
+  opacity: 0.88;
+  margin-bottom: 1.35rem;
+}
+
+.content h2 {
+  font-family: "Italiana", serif;
+  font-size: clamp(1.5rem, 3.2vw, 1.85rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--parchment);
+  margin: 3.25rem 0 1.1rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: none;
+  line-height: 1.2;
+}
+
+.content h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.content h3 {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--mist);
+  margin: 2rem 0 0.5rem;
+}
+
+.content p {
+  color: var(--parchment-dim);
+  margin-bottom: 1.05rem;
+  max-width: 36rem;
+}
+
+.content ul,
+.content ol {
+  margin: 0 0 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.content ul li,
+.content ol li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--parchment-dim);
+  margin-bottom: 0.55rem;
+}
+
+.content ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 4px;
+  height: 1px;
+  background: var(--champagne-muted);
+}
+
+.content ol {
+  counter-reset: docli;
+  list-style: none;
+}
+
+.content ol li {
+  counter-increment: docli;
+  padding-left: 1.5rem;
+}
+
+.content ol li::before {
+  content: counter(docli) ".";
+  position: absolute;
+  left: 0;
+  font-family: "Italiana", serif;
+  font-size: 0.85em;
+  color: var(--champagne-muted);
+}
+
+.content strong {
+  color: var(--parchment);
+  font-weight: 500;
+}
+
+.content a {
+  color: var(--parchment-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--champagne-muted);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.content a:hover {
+  color: var(--parchment);
+  border-bottom-color: var(--champagne);
+}
+
+/* ——— Callouts (quiet panels — no loud accent bars) ——— */
+.box {
+  padding: 1.35rem 1.5rem 1.4rem;
+  margin: 1.75rem 0;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-radius: 0;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.box-info {
+  border-top-color: rgba(182, 154, 92, 0.28);
+}
+
+.box-warn {
+  background: rgba(255, 248, 245, 0.025);
+  border-top-color: rgba(180, 120, 100, 0.25);
+}
+
+.box-success {
+  background: rgba(248, 255, 252, 0.02);
+  border-top-color: rgba(130, 150, 130, 0.22);
+}
+
+.box p,
+.box li {
+  color: var(--mist);
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.box ul,
+.box ol {
+  margin-bottom: 0;
+}
+
+.box ul li::before {
+  background: var(--mist2);
+}
+
+.box strong {
+  color: var(--parchment);
+}
+
+/* ——— Steps ——— */
+.steps {
+  counter-reset: step;
+  margin: 1.25rem 0;
+}
+
+.step {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: flex-start;
+}
+
+.step-num {
+  flex-shrink: 0;
+  min-width: 1.65em;
+  font-family: "Italiana", serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--champagne-muted);
+  text-align: right;
+  padding-top: 0.1em;
+  margin-top: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
+  height: auto;
+  width: auto;
+}
+
+.step-body {
+  font-size: 1rem;
+  color: var(--parchment-dim);
+  line-height: 1.75;
+  padding-top: 0.05em;
+}
+
+/* ——— Tables ——— */
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.92rem;
+}
+
+.content th {
+  background: transparent;
+  color: var(--mist);
+  font-family: "Newsreader", Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  padding: 0.85rem 0.75rem 0.65rem 0;
+  text-align: left;
+  border-bottom: 1px solid var(--rule-strong);
+  letter-spacing: 0.02em;
+  font-size: 0.92rem;
+  text-transform: none;
+}
+
+.content td {
+  padding: 0.75rem 0.75rem 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--parchment-dim);
+  font-size: 0.95rem;
+}
+
+.content tr:last-child td {
+  border-bottom: none;
+}
+
+/* ——— Artist guidelines extras ——— */
+.do-dont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 1rem 0;
+}
+
+@media (max-width: 640px) {
+  .do-dont {
+    grid-template-columns: 1fr;
+  }
+}
+
+.do,
+.dont {
+  border-radius: 0;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+}
+
+.do {
+  border-top: 1px solid rgba(130, 150, 130, 0.2);
+}
+
+.dont {
+  border-top: 1px solid rgba(160, 120, 110, 0.22);
+}
+
+.do h4 {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 0.92rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--parchment-dim);
+  margin-bottom: 0.75rem;
+  opacity: 0.95;
+}
+
+.dont h4 {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 0.92rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--parchment-dim);
+  margin-bottom: 0.75rem;
+  opacity: 0.9;
+}
+
+.do li,
+.dont li {
+  font-size: 0.9rem;
+}
+
+.badge-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.badge-gold {
+  background: transparent;
+  color: var(--mist);
+  border: 1px solid var(--rule);
+}
+
+.badge-green {
+  background: transparent;
+  color: var(--mist);
+  border: 1px solid var(--rule);
+}
+
+.badge-red {
+  background: transparent;
+  color: var(--mist);
+  border: 1px solid var(--rule);
+}
+
+/* ——— Home (index) ——— */
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(48px, 10vh, 100px) clamp(22px, 5vw, 40px);
+  text-align: center;
+}
+
+.home-title {
+  font-family: "Italiana", serif;
+  font-size: clamp(3.5rem, 14vw, 7rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: var(--parchment);
+  line-height: 1.02;
+  margin-bottom: 0.5rem;
+}
+
+.home-tagline {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--mist);
+  margin-bottom: 2rem;
+}
+
+.home-desc {
+  max-width: 26rem;
+  font-size: 1.05rem;
+  color: var(--parchment-dim);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+
+.store-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 3rem;
+}
+
+.store-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 26px;
+  border-radius: 0;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  text-decoration: none;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.store-btn--primary {
+  background: var(--champagne);
+  color: var(--ink);
+  border: 1px solid var(--champagne);
+}
+
+.store-btn--primary:hover {
+  background: var(--parchment-dim);
+  border-color: var(--parchment-dim);
+  transform: translateY(-1px);
+}
+
+.store-btn--ghost {
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid var(--rule);
+}
+
+.store-btn--ghost:hover {
+  border-color: var(--champagne);
+  color: var(--champagne);
+}
+
+.home-divider {
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(180deg, transparent, var(--rule), transparent);
+  margin: 0 auto 3rem;
+}
+
+.home-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(2rem, 5vw, 3.5rem);
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(8px, 2vw, 16px);
+}
+
+.home-feature {
+  background: transparent;
+  padding: 0 0 2.25rem;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+
+.home-features .home-feature:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+@media (min-width: 720px) {
+  .home-features .home-feature {
+    border-bottom: none;
+    padding-bottom: 0;
+    border-right: 1px solid var(--rule);
+    padding-right: clamp(1.5rem, 4vw, 2.5rem);
+    margin-right: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .home-features .home-feature:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+}
+
+.home-feature h3 {
+  font-family: "Italiana", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+  color: var(--parchment);
+  margin-bottom: 0.85rem;
+  font-weight: 400;
+  opacity: 0.92;
+}
+
+.home-feature p {
+  font-size: 0.95rem;
+  color: var(--mist);
+  line-height: 1.72;
+  margin: 0;
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ——— Footer ——— */
+.doc-footer {
+  border-top: 1px solid var(--rule);
+  padding: 2.25rem clamp(20px, 4vw, 40px);
+  text-align: center;
+  margin-top: auto;
+}
+
+.doc-footer .footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin-bottom: 1.15rem;
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.doc-footer .footer-links a {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-style: italic;
+  color: var(--mist2);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.doc-footer .footer-links a:hover {
+  color: var(--parchment-dim);
+}
+
+.doc-footer .footer-copy {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(242, 237, 227, 0.22);
+}
+
+@media (max-width: 600px) {
+  .doc-nav {
+    padding: 18px 16px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+  }
+
+  .content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/* ——— About Modam page ——— */
+.page-about .hero {
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 12vh, 120px) clamp(24px, 6vw, 80px) clamp(64px, 10vh, 100px);
+}
+
+.page-about .hero-inner {
+  max-width: 920px;
+}
+
+.page-about .hero-eyebrow {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--mist);
+  margin-bottom: 2.2rem;
+  opacity: 0;
+  animation: modam-rise 1.1s ease 0.15s forwards;
+}
+
+.page-about .hero .hero-title {
+  font-family: "Italiana", serif;
+  font-size: clamp(3.2rem, 11vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.06em;
+  color: var(--parchment);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: modam-rise 1.15s ease 0.35s forwards;
+}
+
+.page-about .hero-lead {
+  max-width: 34em;
+  font-size: clamp(1.05rem, 2.1vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--parchment-dim);
+  font-weight: 300;
+  opacity: 0;
+  animation: modam-rise 1.2s ease 0.55s forwards;
+}
+
+.page-about .hero-rule {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--champagne), transparent);
+  margin-top: 3rem;
+  opacity: 0;
+  animation: modam-rise 1s ease 0.85s forwards;
+}
+
+@keyframes modam-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-about section.story {
+  padding: clamp(72px, 14vh, 140px) clamp(24px, 6vw, 80px);
+  border-top: 1px solid var(--rule);
+}
+
+.page-about .story-grid {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(48px, 8vw, 100px);
+}
+
+@media (min-width: 880px) {
+  .page-about .story-grid.two {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
+  }
+}
+
+.page-about .story-label {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--mist);
+  margin-bottom: 1.25rem;
+}
+
+.page-about .story-heading {
+  font-family: "Italiana", serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--parchment);
+  margin-bottom: 1.5rem;
+}
+
+.page-about .story-body p {
+  margin-bottom: 1.35em;
+  color: var(--parchment-dim);
+}
+
+.page-about .story-body p strong {
+  color: var(--parchment);
+  font-weight: 500;
+}
+
+.page-about .etymology {
+  padding: 2rem 0 0;
+  border-left: 1px solid var(--rule);
+  padding-left: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: 0.5rem;
+}
+
+.page-about .etymology-ko {
+  font-size: 0.95rem;
+  color: var(--mist);
+  font-style: italic;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.page-about .etymology-en {
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--mist);
+  text-transform: none;
+}
+
+.page-about blockquote.pull {
+  max-width: 720px;
+  margin: clamp(64px, 12vh, 120px) auto;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  position: relative;
+}
+
+.page-about blockquote.pull::before {
+  content: "“";
+  font-family: "Italiana", serif;
+  font-size: clamp(4rem, 12vw, 7rem);
+  line-height: 0.5;
+  color: var(--champagne);
+  opacity: 0.25;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.page-about blockquote.pull p {
+  font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--parchment);
+}
+
+.page-about .closing {
+  text-align: center;
+  padding: clamp(80px, 16vh, 160px) clamp(24px, 6vw, 48px) clamp(100px, 18vh, 180px);
+  border-top: 1px solid var(--rule);
+}
+
+.page-about .closing-mark {
+  font-family: "Italiana", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.28em;
+  color: var(--champagne);
+  margin-bottom: 1.5rem;
+}
+
+.page-about .closing > p {
+  max-width: 28em;
+  margin: 0 auto 2.5rem;
+  color: var(--parchment-dim);
+  font-size: 1.05rem;
+}
+
+.page-about .closing .store-row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.75rem;
+}
+
+.page-about .closing-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border: 1px solid var(--rule);
+  color: var(--parchment);
+  text-decoration: none;
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  transition: border-color 0.35s ease, color 0.35s ease, background 0.35s ease;
+}
+
+.page-about .closing-cta:hover {
+  border-color: var(--champagne);
+  color: var(--ink);
+  background: var(--champagne);
+}

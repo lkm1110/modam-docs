@@ -11,390 +11,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ink: #0c0a08;
-      --ink-soft: #161311;
-      --parchment: #f4f0e8;
-      --parchment-dim: #e8e2d6;
-      --champagne: #c9a962;
-      --champagne-deep: #9a7b3c;
-      --mist: rgba(244, 240, 232, 0.55);
-      --rule: rgba(154, 123, 60, 0.22);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--ink);
-      color: var(--parchment);
-      font-family: "Newsreader", Georgia, serif;
-      font-size: clamp(17px, 2.2vw, 20px);
-      font-weight: 300;
-      line-height: 1.75;
-      letter-spacing: 0.01em;
-      min-height: 100vh;
-    }
-
-    /* Subtle grain */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      z-index: 1000;
-    }
-
-    /* Warm vignette */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 169, 98, 0.07), transparent 55%),
-        radial-gradient(ellipse 100% 80% at 50% 100%, rgba(0, 0, 0, 0.45), transparent 50%);
-      z-index: 999;
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px clamp(24px, 5vw, 56px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .nav-mark {
-      font-family: "Italiana", serif;
-      font-size: clamp(22px, 3vw, 28px);
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--champagne);
-      text-decoration: none;
-      font-weight: 400;
-    }
-
-    .nav-back {
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--mist);
-      text-decoration: none;
-      transition: color 0.35s ease;
-    }
-
-    .nav-back:hover {
-      color: var(--champagne);
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(48px, 12vh, 120px) clamp(24px, 6vw, 80px) clamp(64px, 10vh, 100px);
-      position: relative;
-    }
-
-    .hero-inner {
-      max-width: 920px;
-    }
-
-    .hero-eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-      color: var(--champagne-deep);
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      animation: rise 1.1s ease 0.15s forwards;
-    }
-
-    .hero-title {
-      font-family: "Italiana", serif;
-      font-size: clamp(3.2rem, 11vw, 6.5rem);
-      font-weight: 400;
-      line-height: 1.02;
-      letter-spacing: 0.06em;
-      color: var(--parchment);
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: rise 1.15s ease 0.35s forwards;
-    }
-
-    .hero-lead {
-      max-width: 34em;
-      font-size: clamp(1.05rem, 2.1vw, 1.2rem);
-      line-height: 1.85;
-      color: var(--parchment-dim);
-      font-weight: 300;
-      opacity: 0;
-      animation: rise 1.2s ease 0.55s forwards;
-    }
-
-    .hero-rule {
-      width: 48px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--champagne), transparent);
-      margin-top: 3rem;
-      opacity: 0;
-      animation: rise 1s ease 0.85s forwards;
-    }
-
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Sections */
-    section.story {
-      padding: clamp(72px, 14vh, 140px) clamp(24px, 6vw, 80px);
-      border-top: 1px solid var(--rule);
-    }
-
-    .story-grid {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: grid;
-      gap: clamp(48px, 8vw, 100px);
-    }
-
-    @media (min-width: 880px) {
-      .story-grid.two {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-        align-items: start;
-      }
-    }
-
-    .story-label {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--champagne);
-      margin-bottom: 1.25rem;
-    }
-
-    .story-heading {
-      font-family: "Italiana", serif;
-      font-size: clamp(1.75rem, 3.5vw, 2.35rem);
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      line-height: 1.2;
-      color: var(--parchment);
-      margin-bottom: 1.5rem;
-    }
-
-    .story-body p {
-      margin-bottom: 1.35em;
-      color: var(--parchment-dim);
-    }
-
-    .story-body p strong {
-      color: var(--parchment);
-      font-weight: 500;
-    }
-
-    .etymology {
-      padding: 2rem 0 0;
-      border-left: 1px solid var(--rule);
-      padding-left: clamp(1.5rem, 4vw, 2.5rem);
-      margin-top: 0.5rem;
-    }
-
-    .etymology-ko {
-      font-size: 0.95rem;
-      color: var(--mist);
-      font-style: italic;
-      line-height: 1.65;
-      margin-bottom: 1rem;
-    }
-
-    .etymology-en {
-      font-size: 0.88rem;
-      letter-spacing: 0.06em;
-      color: var(--champagne-deep);
-      text-transform: uppercase;
-    }
-
-    blockquote.pull {
-      max-width: 720px;
-      margin: clamp(64px, 12vh, 120px) auto;
-      padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 4vw, 2rem);
-      text-align: center;
-      position: relative;
-    }
-
-    blockquote.pull::before {
-      content: "“";
-      font-family: "Italiana", serif;
-      font-size: clamp(4rem, 12vw, 7rem);
-      line-height: 0.5;
-      color: var(--champagne);
-      opacity: 0.25;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    blockquote.pull p {
-      font-size: clamp(1.2rem, 2.8vw, 1.55rem);
-      font-style: italic;
-      font-weight: 300;
-      line-height: 1.65;
-      color: var(--parchment);
-    }
-
-    .closing {
-      text-align: center;
-      padding: clamp(80px, 16vh, 160px) clamp(24px, 6vw, 48px) clamp(100px, 18vh, 180px);
-      border-top: 1px solid var(--rule);
-    }
-
-    .closing-mark {
-      font-family: "Italiana", serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      letter-spacing: 0.28em;
-      color: var(--champagne);
-      margin-bottom: 1.5rem;
-    }
-
-    .closing p {
-      max-width: 28em;
-      margin: 0 auto 2.5rem;
-      color: var(--parchment-dim);
-      font-size: 1.05rem;
-    }
-
-    .closing-dl {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto 2.75rem;
-    }
-
-    .dl-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 16px 28px;
-      border-radius: 2px;
-      font-family: "Newsreader", Georgia, serif;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.25s ease;
-    }
-
-    .dl-btn svg {
-      flex-shrink: 0;
-    }
-
-    .dl-btn--primary {
-      background: var(--champagne);
-      color: var(--ink);
-      border: 1px solid var(--champagne);
-    }
-
-    .dl-btn--primary:hover {
-      background: var(--parchment-dim);
-      border-color: var(--parchment-dim);
-      transform: translateY(-1px);
-    }
-
-    .dl-btn--secondary {
-      background: transparent;
-      color: var(--parchment);
-      border: 1px solid var(--rule);
-    }
-
-    .dl-btn--secondary:hover {
-      border-color: var(--champagne);
-      color: var(--champagne);
-    }
-
-    .closing-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      border: 1px solid var(--rule);
-      color: var(--parchment);
-      text-decoration: none;
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      transition: border-color 0.35s ease, color 0.35s ease, background 0.35s ease;
-    }
-
-    .closing-cta:hover {
-      border-color: var(--champagne);
-      color: var(--ink);
-      background: var(--champagne);
-    }
-
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 2.5rem clamp(24px, 5vw, 48px);
-      text-align: center;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.5rem 1.75rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-links a {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      color: var(--mist);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--champagne);
-    }
-
-    .footer-copy {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(244, 240, 232, 0.22);
-    }
-  </style>
+  <link rel="stylesheet" href="modam-docs.css" />
 </head>
-<body>
+<body class="page-about">
   <div class="wrap">
-    <nav>
+    <nav class="doc-nav">
       <a class="nav-mark" href="index.html">Modam</a>
-      <a class="nav-back" href="index.html">Home</a>
+      <div class="nav-links">
+        <a class="nav-back" href="index.html">Home</a>
+      </div>
     </nav>
 
     <header class="hero">
@@ -454,16 +79,50 @@
       <p>
         Download the app to discover works, follow artists, and bring something you love into your world.
       </p>
+      <div class="store-row">
+        <a
+          class="store-btn store-btn--primary"
+          href="https://apps.apple.com/app/artyard/id6746969829"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+            />
+          </svg>
+          Download on App Store
+        </a>
+        <a
+          class="store-btn store-btn--ghost"
+          href="https://play.google.com/store/apps/details?id=com.artyard.app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M3.18 23.76c.3.17.64.22.99.14l12.47-7.04-2.76-2.76-10.7 9.66zM.5 1.4C.19 1.74 0 2.27 0 2.96v18.08c0 .69.19 1.22.51 1.56l.08.08 10.12-10.12v-.24L.58 1.32.5 1.4zm19.1 11.03l-2.55-1.44-3.03 3.03 3.03 3.03 2.56-1.45c.73-.41.73-1.09.0-1.17zM4.17.24L16.64 7.28l-2.76 2.76L3.18.38A1.17 1.17 0 014.17.24z"
+            />
+          </svg>
+          Get it on Google Play
+        </a>
+      </div>
       <a class="closing-cta" href="index.html">Return to home</a>
     </section>
 
-    <footer>
+    <footer class="doc-footer">
       <div class="footer-links">
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms-of-service.html">Terms</a>
+        <a href="index.html">Home</a>
+        <a href="about-modam.html">About Modam</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <a href="data-deletion.html">Data Deletion</a>
+        <a href="shipping-policy.html">Shipping Policy</a>
+        <a href="refund-policy.html">Refund Policy</a>
+        <a href="artist-guidelines.html">Artist Guidelines</a>
         <a href="mailto:modamceo@modam.app">Contact</a>
       </div>
-      <p class="footer-copy">© 2026 Modam Co., Ltd.</p>
+      <p class="footer-copy">© 2026 Modam. All rights reserved.</p>
     </footer>
   </div>
 </body>
