@@ -9,7 +9,7 @@
   <meta property="og:site_name" content="Modam" />
   <meta property="og:title" content="Artwork on Modam" />
   <meta property="og:description" content="Discover and collect original artworks from emerging artists." />
-  <meta property="og:image" content="https://lkm1110.github.io/modam-docs/og-default.png" />
+  <meta property="og:image" content="https://modam0401.github.io/modam-docs/og-default.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Artwork on Modam" />
   <meta name="twitter:description" content="Discover and collect original artworks from emerging artists." />
@@ -266,7 +266,7 @@
   <div id="error">
     <h2>Artwork not found</h2>
     <p>This artwork may have been removed or the link is invalid.</p>
-    <a href="https://lkm1110.github.io/modam-docs/" style="color: var(--gold); font-size: 14px;">Go to Modam →</a>
+    <a href="https://modam0401.github.io/modam-docs/index.html" style="color: var(--gold); font-size: 14px;">Go to Modam →</a>
   </div>
 
   <p class="logo">Modam</p>
@@ -275,14 +275,18 @@
   const SUPABASE_URL  = 'https://bkvycanciimgyftdtqpx.supabase.co';
   const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJrdnljYW5jaWltZ3lmdGR0cXB4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkxODQ5MDksImV4cCI6MjA3NDc2MDkwOX0.nYAt_sr_wTLy1PexlWV7G9fCXMSz2wsV2Ql5vNbY5zY';
   const APP_SCHEME    = 'artyard';
-  const IOS_URL       = 'https://apps.apple.com/app/artyard/id6746969829';
+  const IOS_URL       = 'https://apps.apple.com/app/id6753962694';
   const ANDROID_URL   = 'https://play.google.com/store/apps/details?id=com.artyard.app';
 
   const params     = new URLSearchParams(location.search);
   const artworkId  = params.get('id');
 
   async function init() {
-    if (!artworkId) { showError(); return; }
+    if (!artworkId) {
+      // ID 없이 접근 시 메인 페이지로 리다이렉트
+      location.replace('https://modam0401.github.io/modam-docs/index.html');
+      return;
+    }
 
     // 딥링크 시도 (앱이 설치된 경우 열림)
     tryOpenApp();
